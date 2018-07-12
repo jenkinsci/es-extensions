@@ -8,6 +8,7 @@ declare global {
 interface ExtensionMap {
     [key: string]: Extension<any, any>[]
 }
+
 export class ExtensionStore {
     private extensions: ExtensionMap = {}
 
