@@ -3,11 +3,6 @@
 
 [![npm version](https://badge.fury.io/js/%40imeredith%2Fes-extensions-api.svg)](https://badge.fury.io/js/%40imeredith%2Fes-extensions-api)
 
-
-One to two paragraph statement about your product and what it does.
-
-![](header.png)
-
 ## Installation
 
 ```sh
@@ -23,8 +18,8 @@ Extensions are just functions that take some context as a parameter, and do some
 
 * Extension Point identifier - 'example.ext'
 * Extension Context
- * container - Html Div element to render into.
- * name - Name to render
+  * container - Html Div element to render into.
+  * name - Name to render
 
 #### Example Extesnion Impl
 ```javascript
