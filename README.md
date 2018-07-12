@@ -16,15 +16,35 @@ npm i -S @imeredith/es-extensions-api
 
 
 ## Usage example
+Extensions are just functions that take some context as a parameter, and do something. It is totally up to the application that wants to use extensions implemented by plugins to define the contract for the plugins to implement.
 
-### Registering an Extension
+
+### Example extension
+
+* Extension Point identifier - 'example.ext'
+* Extension Context
+ * container - Html Div element to render into.
+ * name - Name to render
+
+#### Example Extesnion Impl
 ```javascript
 import { ExtensionStore } from '@imeredith/es-extensions-api';
 
-ExtensionStore.register('extensionPointId', function (context) {
-    // Do whatever.
+ExtensionStore.register('example.ext', function (context) {
+    context.container.innerHTML = '<h1> Hello ' + context.name '</h1>';
 })
+```
 
+#### Example Extension Usage 
+```javascript
+import { ExtensionStore } from '@imeredith/es-extensions-api';
+
+const container = document.getElementbyId('ext_container');
+
+const extension = ExtensionStore.getExtensions('example.ext')[0]
+if(extension) {
+    extension({container, name: 'World!'})
+}
 ```
 
 ## Development setup
