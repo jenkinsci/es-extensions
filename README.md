@@ -17,8 +17,14 @@ npm i -S @imeredith/es-extensions-api
 
 ## Usage example
 
+### Registering an Extension
 ```javascript
-import { ExtensionStore } from '@imeredith/es-extensions-api'
+import { ExtensionStore } from '@imeredith/es-extensions-api';
+
+ExtensionStore.register('extensionPointId', function (context) {
+    // Do whatever.
+})
+
 ```
 
 ## Development setup
