@@ -1,5 +1,5 @@
 # ES Extensions API
-> Provides an extension API for es5+ applications.
+> Provides an extension API for es5+ applications based on Jenkins [JEP-204](https://github.com/jenkinsci/jep/tree/master/jep/204)
 
 [![npm version](https://badge.fury.io/js/%40imeredith%2Fes-extensions-api.svg)](https://badge.fury.io/js/%40imeredith%2Fes-extensions-api)
 
