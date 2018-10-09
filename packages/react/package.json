@@ -22,7 +22,7 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
-    "@imeredith/es-extensions-api": "0.0.3",
+    "@imeredith/es-extensions-api": "file:../api",
     "react": "^15.4.2"
   }
 }
