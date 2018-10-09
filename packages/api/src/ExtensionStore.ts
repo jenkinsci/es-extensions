@@ -17,9 +17,16 @@ export class ExtensionStore {
         extensions.push(extension);
         this.extensions[extensionPointId] = extensions;
     }
+    static register<A, B>(extensionPointId: string, extension: Extension<A, B>) {
+        this.getInstance().register(extensionPointId, extension);
+    }
 
     getExtensions<A = any, B = any>(extensionPointId: string): Extension<A,B>[] {
         return (this.extensions[extensionPointId] || []) as any as Extension<A,B>[];
+    }
+
+    static getExtensions<A = any, B = any>(extensionPointId: string): Extension<A,B>[] {
+        return this.getInstance().getExtensions(extensionPointId);
     }
 
     static getInstance() {
@@ -29,4 +36,5 @@ export class ExtensionStore {
 
         return window.extensionStore;
     }
+
 }

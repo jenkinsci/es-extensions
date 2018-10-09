@@ -26,7 +26,7 @@ Extensions are just functions that take some context as a parameter, and do some
 import { ExtensionStore } from '@imeredith/es-extensions-api';
 
 ExtensionStore.register('example.ext', function (context) {
-    context.container.innerHTML = '<h1> Hello ' + context.name '</h1>';
+    context.container.innerHTML = '<h1> Hello ' + context.name + '</h1>';
 })
 ```
 
