@@ -1,0 +1,28 @@
+{
+  "name": "@imeredith/es-extensions-react",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imeredith/es-extensions-react.git"
+  },
+  "author": "Ivan Meredith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imeredith/es-extensions-react/issues"
+  },
+  "homepage": "https://github.com/imeredith/es-extensions-react#readme",
+  "devDependencies": {
+    "@types/node": "^10.5.2",
+    "@types/react": "^16.4.6",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "@imeredith/es-extensions-api": "0.0.3",
+    "react": "^15.4.2"
+  }
+}

@@ -9,8 +9,14 @@ var ExtensionStore = /** @class */ (function () {
         extensions.push(extension);
         this.extensions[extensionPointId] = extensions;
     };
+    ExtensionStore.register = function (extensionPointId, extension) {
+        this.getInstance().register(extensionPointId, extension);
+    };
     ExtensionStore.prototype.getExtensions = function (extensionPointId) {
         return (this.extensions[extensionPointId] || []);
+    };
+    ExtensionStore.getExtensions = function (extensionPointId) {
+        return this.getInstance().getExtensions(extensionPointId);
     };
     ExtensionStore.getInstance = function () {
         if (!window.extensionStore) {
