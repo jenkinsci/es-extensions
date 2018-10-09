@@ -1,17 +1,19 @@
 import * as React from 'react';
-import { extensionStore, RenderContext } from '@imeredith/es-extensions-api';
+import { ExtensionStore, RenderContext } from '@imeredith/es-extensions-api';
 
 interface Props {
     extensionPointId: string
     context: any
+    containerClassName: string
+    keyPrefix: string
 }
 export class RenderExtensions extends React.Component<Props> {
     render() {
-        return extensionStore
-            .get(this.props.extensionPointId)
+        return ExtensionStore
+            .getExtensions(this.props.extensionPointId)
             .map((extension: any, index: number) => 
-                <div key={index.toString()} 
+                <div key={`${this.props.keyPrefix}${index.toString()}`} 
                     ref={container => container && extension({...this.props.context, container})}
-                    className="extension" />)
+                    className={this.props.containerClassName} />)
     }
 }
