@@ -1,6 +1,6 @@
 {
   "name": "@imeredith/es-extensions-api",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -35,7 +35,7 @@
       "**/__tests__/**/*.+(j|t)s?(x)",
       "**/?(*.)+(spec|test).+(j|t)s?(x)"
     ],
-    "testPathIgnorePatterns":[
+    "testPathIgnorePatterns": [
       "/node_modules/",
       "/dist/"
     ]
