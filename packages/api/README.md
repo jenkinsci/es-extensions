@@ -32,7 +32,7 @@ ExtensionStore.register('example.ext', function (context) {
 
 #### Example Extension Usage 
 ```javascript
-import { ExtensionStore } from '@imeredith/es-extensions-api';
+import stores from '@imeredith/es-extensions-api';
 
 const container = document.getElementbyId('ext_container');
 

@@ -1,2 +1,6 @@
-export { ExtensionStore } from './ExtensionStore';
-export { Extension, RenderExtension, RenderContext } from './Extension';
+import { ExtensionStore } from './ExtensionStore';
+
+export { ExtensionStore };
+export { Subscription } from './types';
+export default ExtensionStore.getInstance();
+

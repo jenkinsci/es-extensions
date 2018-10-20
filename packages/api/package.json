@@ -11,6 +11,33 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^23.3.5",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "ts-jest": "^23.10.4",
     "typescript": "^2.8.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/__tests__/**/*.+(j|t)s?(x)",
+      "**/?(*.)+(spec|test).+(j|t)s?(x)"
+    ],
+    "testPathIgnorePatterns":[
+      "/node_modules/",
+      "/dist/"
+    ]
   }
 }

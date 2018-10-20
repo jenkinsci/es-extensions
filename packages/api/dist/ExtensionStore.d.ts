@@ -1,14 +1,11 @@
-import { Extension } from './Extension';
-declare global  {
-    interface Window {
-        extensionStore: ExtensionStore;
-    }
-}
+import { Subscription } from './types';
 export declare class ExtensionStore {
     private extensions;
-    register<A, B>(extensionPointId: string, extension: Extension<A, B>): void;
-    static register<A, B>(extensionPointId: string, extension: Extension<A, B>): void;
-    getExtensions<A = any, B = any>(extensionPointId: string): Extension<A, B>[];
-    static getExtensions<A = any, B = any>(extensionPointId: string): Extension<A, B>[];
+    private subscriptions;
+    register(extensionPointId: string, extension: Function): void;
+    getExtensions<A = any, B = any>(extensionPointId: string): Function[];
     static getInstance(): ExtensionStore;
+    subscribe(extensionPointId: string, callback: Function): Subscription;
+    private notify(extensionPointId);
+    unsubscribe(extensionPointId: string, callback: Function): void;
 }

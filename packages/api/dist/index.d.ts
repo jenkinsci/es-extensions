@@ -1,2 +1,5 @@
-export { ExtensionStore } from './ExtensionStore';
-export { Extension, RenderExtension, RenderContext } from './Extension';
+import { ExtensionStore } from './ExtensionStore';
+export { ExtensionStore };
+export { Subscription } from './types';
+declare const _default: ExtensionStore;
+export default _default;
