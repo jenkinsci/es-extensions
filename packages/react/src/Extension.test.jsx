@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import { Extension } from './Extension';
+import { ExtensionPoint } from './Extension';
 import { JSDOM } from 'jsdom';
 import store from '@imeredith/es-extensions-api';
 
@@ -17,7 +17,7 @@ test('extension renders', () => {
     });
 
     // Mount the Extension renderer (vs shallow) so that we can test rerendering when new plugins are added.
-    const wrapper = mount(<Extension extensionPointId="hello.world"/>, { attachTo: dom.window.document.body });
+    const wrapper = mount(<ExtensionPoint extensionPointId="hello.world"/>);
 
     expect(wrapper).toHaveText('Hello world');
 
@@ -31,4 +31,9 @@ test('extension renders', () => {
 
     expect(wrapper.find("div").at(1)).toHaveText('Hello world');
     expect(wrapper.find("div").at(2)).toHaveText('Hello test');
+})
+
+test('default component renders',() => {
+    const wrapper = mount(<ExtensionPoint extensionPointId="default.test"><hr className="hr_test"/></ExtensionPoint>);
+    expect(wrapper.find('.hr_test')).toHaveLength(1);
 })

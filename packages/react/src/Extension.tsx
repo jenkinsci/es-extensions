@@ -23,7 +23,7 @@ const Container: React.SFC<{context?:any, extension: Function}> = (props) => {
 
     return <div ref={ref}/>
 }
-export class Extension extends React.Component<Props, State> {
+export class ExtensionPoint extends React.Component<Props, State> {
     private subscription: Subscription | undefined;
     constructor(props: Props) {
         super(props);
