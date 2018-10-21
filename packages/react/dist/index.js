@@ -1,1 +1,0 @@
-export { ExtensionPoint } from './ExtensionPoint';
