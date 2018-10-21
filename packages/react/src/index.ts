@@ -1,1 +1,1 @@
-export { ExtensionPoint } from './Extension';
+export { ExtensionPoint } from './ExtensionPoint';

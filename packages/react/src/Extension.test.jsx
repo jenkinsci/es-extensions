@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import { ExtensionPoint } from './Extension';
+import { ExtensionPoint } from './ExtensionPoint';
 import { JSDOM } from 'jsdom';
-import store from '@imeredith/es-extensions-api';
+import store from '@jenkins-cd/es-extensions';
 
 const dom = new JSDOM('');
 global.window = dom.window;

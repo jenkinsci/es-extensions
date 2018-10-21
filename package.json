@@ -1,7 +1,13 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "bootstrap": "lerna clean -y && lerna bootstrap",
+    "build": "lerna run build",
+    "test": "lerna run test"
+  },
   "devDependencies": {
     "lerna": "^3.0.6"
   }
+  
 }

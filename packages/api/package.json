@@ -1,12 +1,16 @@
 {
-  "name": "@imeredith/es-extensions-api",
-  "version": "0.1.9",
+  "name": "@jenkins-cd/es-extensions",
+  "version": "0.1.1",
   "description": "",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch"
+    "build": "rm -rf dist && tsc",
+    "watch": "tsc --watch",
+    "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "author": "",
   "license": "MIT",

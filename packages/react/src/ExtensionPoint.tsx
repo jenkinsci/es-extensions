@@ -1,5 +1,5 @@
 import * as React from 'react';
-import store, { Subscription } from '@imeredith/es-extensions-api';
+import store, { Subscription } from '@jenkins-cd/es-extensions';
 
 interface Props {
     extensionPointId: string
