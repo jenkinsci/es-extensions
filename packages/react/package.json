@@ -1,6 +1,6 @@
 {
 	"name": "@jenkins-cd/es-extensions-react",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
@@ -70,9 +70,7 @@
 		"testEnvironment": "enzyme",
 		"testEnvironmentOptions": {
 			"enzymeAdapter": "react15.4"
-		}, 
+		},
 		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
 	}
-
-		
 }
