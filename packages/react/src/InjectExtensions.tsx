@@ -7,6 +7,7 @@ interface InjectedProps {
 interface State {
     extensions: { [key: string]: Function[] }
 }
+
 export function InjectExtensions<Props>(extensionPointId: string, ...extensionPointIds: string[]) {
     return function(WrappedComponent: React.ComponentType<InjectedProps & Props>) {
         return class extends React.Component<Props, State> {
