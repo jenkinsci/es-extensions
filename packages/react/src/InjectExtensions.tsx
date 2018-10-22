@@ -9,9 +9,9 @@ interface State {
 }
 export function InjectExtensions<Props>(extensionPointId: string, ...extensionPointIds: string[]) {
     return function(WrappedComponent: React.ComponentType<InjectedProps & Props>) {
-        return class extends React.Component<InjectedProps, State> {
+        return class extends React.Component<Props, State> {
             subscriptions: Subscription[];
-            constructor(props: InjectedProps) {
+            constructor(props: Props) {
                 super(props);
                 this.subscriptions = [];
                 const extensions: { [key: string]: Function[] } = {};

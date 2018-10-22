@@ -27,7 +27,9 @@
 		"@babel/plugin-proposal-decorators": "^7.1.2",
 		"@babel/preset-env": "^7.1.0",
 		"@babel/preset-react": "^7.0.0",
+		"@types/enzyme": "^3.1.14",
 		"@types/jest": "^23.3.5",
+		"@types/jsdom": "^12.2.0",
 		"@types/node": "^10.5.2",
 		"@types/react": "^16.4.6",
 		"@types/react-addons-test-utils": "^0.14.22",
@@ -68,6 +70,9 @@
 		"testEnvironment": "enzyme",
 		"testEnvironmentOptions": {
 			"enzymeAdapter": "react15.4"
-		}
+		}, 
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
 	}
+
+		
 }
