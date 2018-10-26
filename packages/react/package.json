@@ -21,6 +21,11 @@
 	"bugs": {
 		"url": "https://github.com/imeredith/es-extensions-react/issues"
 	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
 	"homepage": "https://github.com/imeredith/es-extensions-react#readme",
 	"devDependencies": {
 		"@babel/core": "^7.1.2",
