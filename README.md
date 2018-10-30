@@ -22,5 +22,5 @@ npm run bootstrap
 npm test
 ```
 
-##Meta
+## Meta
 Distributed under the MIT license. See ``LICENSE`` for more information.
