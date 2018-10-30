@@ -11,7 +11,7 @@ export class ExtensionStore {
         this.notify(extensionPointId)
     }
 
-    getExtensions<A = any, B = any>(extensionPointId: string): Function[] {
+    getExtensions(extensionPointId: string): Function[] {
         return this.extensions[extensionPointId] || [];
     }
    

@@ -1,58 +1,26 @@
-# ES Extensions API
-> Provides an extension API for es5+ applications based on Jenkins [JEP-204](https://github.com/jenkinsci/jep/tree/master/jep/204)
+# ES Extensions
+> This repository provides a collection of packages to aid with runtime ES5+ extensibility.
 
-[![npm version](https://badge.fury.io/js/%40imeredith%2Fes-extensions-api.svg)](https://badge.fury.io/js/%40imeredith%2Fes-extensions-api)
+## Project Structure
 
-## Installation
+* `/packages/`
+  * `store` - Extension store implementation that allows extensions to be registered and looked up.
+  * `react` - Tools to help with rendering react extensions. Only needed for extenion points.
 
-```sh
-npm i -S @imeredith/es-extensions-api
-```
+## Building
 
-
-## Usage example
-Extensions are just functions that take some context as a parameter, and do something. It is totally up to the application that wants to use extensions implemented by plugins to define the contract for the plugins to implement.
-
-
-### Example extension
-
-* Extension Point identifier - 'example.ext'
-* Extension Context
-  * container - Html Div element to render into.
-  * name - Name to render
-
-#### Example Extesnion Impl
-```javascript
-import { ExtensionStore } from '@imeredith/es-extensions-api';
-
-ExtensionStore.register('example.ext', function (context) {
-    context.container.innerHTML = '<h1> Hello ' + context.name + '</h1>';
-})
-```
-
-#### Example Extension Usage 
-```javascript
-import { ExtensionStore } from '@imeredith/es-extensions-api';
-
-const container = document.getElementbyId('ext_container');
-
-const extension = ExtensionStore.getExtensions('example.ext')[0]
-if(extension) {
-    extension({container, name: 'World!'})
-}
-```
-
-## Development setup
+This repository is managed with [lerna](https://github.com/lerna/lerna). To build:
 
 ```sh
-npm i
+npm install
+npm run bootstrap
 ```
 
-## Release History
+## Test
 
-* 0.0.3
-    * Work in progress
+```sh
+npm test
+```
 
-## Meta
-
+##Meta
 Distributed under the MIT license. See ``LICENSE`` for more information.
