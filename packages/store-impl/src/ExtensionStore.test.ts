@@ -8,7 +8,7 @@ test('Extension Store registers and fetches an extension', () => {
     const store = new ExtensionStore();
 
     store.register('test', sum);
-    const testExtensions = store.getExtensions('test');
+    const testExtensions = store.get('test');
     expect(testExtensions).toHaveLength(1);
     expect(testExtensions[0]({a:1, b:2})).toEqual(3);
 })

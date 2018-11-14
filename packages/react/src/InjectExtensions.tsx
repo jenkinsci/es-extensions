@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Subscription } from '@jenkins-cd/es-extensions';
+import { get as getExtensions, IStoreSubscription } from '@jenkins-cd/es-extensions';
 
 interface InjectedProps {
     extensions: { [key: string]: Function[] }
@@ -11,7 +11,7 @@ interface State {
 export function InjectExtensions<Props>(extensionPointId: string, ...extensionPointIds: string[]) {
     return function(WrappedComponent: React.ComponentType<InjectedProps & Props>) {
         return class extends React.Component<Props, State> {
-            subscriptions: Subscription[];
+            subscriptions: IStoreSubscription[];
             constructor(props: Props) {
                 super(props);
                 this.subscriptions = [];
@@ -24,8 +24,8 @@ export function InjectExtensions<Props>(extensionPointId: string, ...extensionPo
             componentDidMount() {
                 const store = window.extensionStore;
                 const extensions: { [key: string]: Function[] } = {};
-                extensions[extensionPointId] = store.getExtensions(extensionPointId);
-                extensionPointIds.forEach(id => extensions[id] = store.getExtensions(id));
+                extensions[extensionPointId] = getExtensions(extensionPointId);
+                extensionPointIds.forEach(id => extensions[id] = getExtensions(id));
                 this.setState({extensions});
                 this.subscriptions = Object.keys(extensions).map(id => {
                     return store.subscribe(id, (e: Function[]) => this.setState(prev => { 
@@ -41,6 +41,6 @@ export function InjectExtensions<Props>(extensionPointId: string, ...extensionPo
             render() {
                 return <WrappedComponent extensions={this.state.extensions} {...this.props} />
             }
-        }
+        } 
     }
 }

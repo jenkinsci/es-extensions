@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { subscribe, getExtensions, Subscription } from '@jenkins-cd/es-extensions';
+import { get as getExtensions, subscribe, IStoreSubscription } from '@jenkins-cd/es-extensions';
 
 interface Props {
     extensionPointId: string
@@ -24,7 +24,7 @@ const Container: React.SFC<{context?:any, extension: Function}> = (props) => {
     return <div ref={ref}/>
 }
 export class ExtensionPoint extends React.Component<Props, State> {
-    private subscription: Subscription | undefined;
+    private subscription: IStoreSubscription | undefined;
     constructor(props: Props) {
         super(props);
         this.state = { extensions: getExtensions(this.props.extensionPointId) };

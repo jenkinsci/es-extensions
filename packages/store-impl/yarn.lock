@@ -18,6 +18,11 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@jenkins-cd/es-extensions@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@jenkins-cd/es-extensions/-/es-extensions-0.3.0.tgz#83d6daec724667a44d0878fd074713fb67fc9d51"
+  integrity sha512-/2uJIk6vLngaq0ZRD+AWA2zU42VsQS9RdLt8dhHNXibcAieaI8f/GeduDDZSZQhEQwVSx5UA1VAkMiLE9DWCpg==
+
 "@types/events@*":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
@@ -3302,9 +3307,9 @@ sshpk@^1.7.0:
     tweetnacl "~0.14.0"
 
 stack-utils@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
-  integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.1.tgz#d4f33ab54e8e38778b0ca5cfd3b3afb12db68620"
+  integrity sha1-1PM6tU6OOHeLDKXP07OvsS22hiA=
 
 static-extend@^0.1.1:
   version "0.1.2"
