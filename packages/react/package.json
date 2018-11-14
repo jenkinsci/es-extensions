@@ -1,6 +1,6 @@
 {
 	"name": "@jenkins-cd/es-extensions-react",
-	"version": "0.2.3",
+	"version": "0.3.0",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
@@ -54,7 +54,7 @@
 		"typescript": "^2.9.2"
 	},
 	"dependencies": {
-		"@jenkins-cd/es-extensions": "^0.2.3",
+		"@jenkins-cd/es-extensions": "^0.3.0",
 		"react": "^15.4.2"
 	},
 	"jest": {
