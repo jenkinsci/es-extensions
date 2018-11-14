@@ -1,18 +1,18 @@
 import { IExtensionStore, IStoreSubscription } from '@jenkins-cd/es-extensions';
 
 export class ExtensionStore implements IExtensionStore{
-    private extensions: Record<string, Function[]> = {}
+    private extensions: Record<string, any[]> = {}
     private subscriptions: Record<string, Function[]>   = {};
 
-    register(extensionPointId: string, extension: Function) {
+    register<T>(extensionPointId: string, extension: T) {
         const extensions = this.extensions[extensionPointId] || []
-        extensions.push(extension);
+        extensions.push(extension as any);
         this.extensions[extensionPointId] = extensions;
         this.notify(extensionPointId)
     }
 
 
-    get(extensionPointId: string): Function[] {
+    get<T>(extensionPointId: string): T[] {
         return this.extensions[extensionPointId] || [];
     }
    

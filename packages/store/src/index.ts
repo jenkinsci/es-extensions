@@ -14,10 +14,10 @@ function getStore() {
     return window.extensionStore;
 }
 
-function register(extensionPointId: string, extension: Function): void {
+function register<T>(extensionPointId: string, extension: T): void {
     getStore().register(extensionPointId, extension);
 }
-function get(extensionPointId: string): Function[] {
+function get<T>(extensionPointId: string): T[] {
     return getStore().get(extensionPointId);
 }
 function subscribe(extensionPointId: string, callback: Function): IStoreSubscription {

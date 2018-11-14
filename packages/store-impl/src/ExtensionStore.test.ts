@@ -1,6 +1,7 @@
 import { ExtensionStore } from './ExtensionStore';
 
-function sum(context: {a: number, b: number}) {
+type SumExtensionType = (context: { a: number, b: number}) => number
+const sum = (context: {a: number, b: number}) => {
     return context.a + context.b;
 }
 
@@ -8,7 +9,7 @@ test('Extension Store registers and fetches an extension', () => {
     const store = new ExtensionStore();
 
     store.register('test', sum);
-    const testExtensions = store.get('test');
+    const testExtensions = store.get<SumExtensionType>('test');
     expect(testExtensions).toHaveLength(1);
     expect(testExtensions[0]({a:1, b:2})).toEqual(3);
 })

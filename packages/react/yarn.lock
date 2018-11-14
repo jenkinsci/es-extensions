@@ -658,11 +658,6 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@jenkins-cd/es-extensions@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@jenkins-cd/es-extensions/-/es-extensions-0.3.0.tgz#83d6daec724667a44d0878fd074713fb67fc9d51"
-  integrity sha512-/2uJIk6vLngaq0ZRD+AWA2zU42VsQS9RdLt8dhHNXibcAieaI8f/GeduDDZSZQhEQwVSx5UA1VAkMiLE9DWCpg==
-
 "@types/cheerio@*":
   version "0.22.9"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.9.tgz#b5990152604c2ada749b7f88cab3476f21f39d7b"

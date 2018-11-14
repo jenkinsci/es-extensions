@@ -18,11 +18,6 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@jenkins-cd/es-extensions@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@jenkins-cd/es-extensions/-/es-extensions-0.3.0.tgz#83d6daec724667a44d0878fd074713fb67fc9d51"
-  integrity sha512-/2uJIk6vLngaq0ZRD+AWA2zU42VsQS9RdLt8dhHNXibcAieaI8f/GeduDDZSZQhEQwVSx5UA1VAkMiLE9DWCpg==
-
 "@types/events@*":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
