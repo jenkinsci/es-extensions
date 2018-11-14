@@ -2,5 +2,17 @@
   "packages": [
     "packages/*"
   ],
-  "version": "0.2.3"
+  "version": "0.2.3", 
+  "command": {
+    "bootstrap": {
+      "npmClient": "yarn"
+    },
+    "publish": {
+      "npmClient": "yarn"
+    },
+    "run": {
+      "npmClient": "yarn"
+    }
+  }
+
 }

@@ -2,17 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 import { ExtensionPoint } from './ExtensionPoint';
-import { JSDOM } from 'jsdom';
-import store from '@jenkins-cd/es-extensions';
-
-const dom = new JSDOM('');
-global.window = dom.window;
+import { register } from '@jenkins-cd/es-extensions';
 
 test('extension renders', () => {
     const HelloComponent = (props) => <div>Hello {props.name}</div>;
 
     // Register first "Hello world" extension
-    store.register("hello.world", ({container}) => {
+    register("hello.world", ({container}) => {
         ReactDOM.render(<HelloComponent name="world"/>, container);
     });
 
@@ -21,7 +17,7 @@ test('extension renders', () => {
 
     expect(wrapper).toHaveText('Hello world');
 
-    store.register("hello.world", ({container}) => {
+    register("hello.world", ({container}) => {
         ReactDOM.render(<HelloComponent name="test"/>, container);
     });
 

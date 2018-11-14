@@ -1,5 +1,5 @@
 import * as React from 'react';
-import store, { Subscription } from '@jenkins-cd/es-extensions';
+import { Subscription } from '@jenkins-cd/es-extensions';
 
 interface InjectedProps {
     extensions: { [key: string]: Function[] }
@@ -22,6 +22,7 @@ export function InjectExtensions<Props>(extensionPointId: string, ...extensionPo
             }
         
             componentDidMount() {
+                const store = window.extensionStore;
                 const extensions: { [key: string]: Function[] } = {};
                 extensions[extensionPointId] = store.getExtensions(extensionPointId);
                 extensionPointIds.forEach(id => extensions[id] = store.getExtensions(id));

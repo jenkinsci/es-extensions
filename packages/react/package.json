@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
+		"prepublishOnly": "yarn run build",
 		"build": "rm -rf dist && tsc",
 		"watch": "tsc --watch",
 		"test": "jest"

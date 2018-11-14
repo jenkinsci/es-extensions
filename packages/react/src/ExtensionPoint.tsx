@@ -1,5 +1,5 @@
 import * as React from 'react';
-import store, { Subscription } from '@jenkins-cd/es-extensions';
+import { subscribe, getExtensions, Subscription } from '@jenkins-cd/es-extensions';
 
 interface Props {
     extensionPointId: string
@@ -27,11 +27,11 @@ export class ExtensionPoint extends React.Component<Props, State> {
     private subscription: Subscription | undefined;
     constructor(props: Props) {
         super(props);
-        this.state = { extensions: store.getExtensions(this.props.extensionPointId) };
+        this.state = { extensions: getExtensions(this.props.extensionPointId) };
     }
 
     componentDidMount() {
-        this.subscription = store.subscribe(this.props.extensionPointId, (extensions: Function[]) => this.setState({ extensions }))
+        this.subscription = subscribe(this.props.extensionPointId, (extensions: Function[]) => this.setState({ extensions }))
     }
 
     componentWillUnmount() {
