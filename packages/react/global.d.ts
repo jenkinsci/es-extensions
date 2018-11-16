@@ -1,5 +1,5 @@
-declare module NodeJS  {
+declare module NodeJS {
     interface Global {
-        window: Window
+        window: Window;
     }
 }

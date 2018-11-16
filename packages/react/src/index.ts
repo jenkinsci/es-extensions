@@ -1,2 +1,2 @@
 export { ExtensionPoint } from './ExtensionPoint';
-export { InjectExtensions } from './InjectExtensions'
+export { InjectExtensions } from './InjectExtensions';
