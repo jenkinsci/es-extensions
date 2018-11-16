@@ -43,6 +43,6 @@ export class ExtensionStore implements IExtensionStore {
 
     unsubscribe(extensionPointId: string, callback: Function) {
         const subscriptions = this.subscriptions[extensionPointId] || [];
-        this.subscriptions[extensionPointId] = subscriptions.filter(cb => cb != callback);
+        this.subscriptions[extensionPointId] = subscriptions.filter(cb => cb !== callback);
     }
 }

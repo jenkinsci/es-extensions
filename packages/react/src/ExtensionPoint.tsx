@@ -47,7 +47,7 @@ export class ExtensionPoint extends React.Component<Props, State> {
     render() {
         const exts = this.state.extensions;
 
-        if (!exts || exts.length == 0) {
+        if (!exts || exts.length === 0) {
             return <ExtensionsContainer {...this.props}>{this.props.children}</ExtensionsContainer>;
         }
         return (
