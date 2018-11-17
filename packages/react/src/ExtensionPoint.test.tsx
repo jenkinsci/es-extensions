@@ -1,22 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import { ExtensionPoint } from './ExtensionPoint';
-import { register } from '@jenkins-cd/es-extensions';
+import { ReactExtensionPoint, RenderContext } from './ExtensionPoint';
+import { ExtensionPoint } from '@jenkins-cd/es-extensions';
+import 'jest-enzyme';
+
+const HelloWorldExtensionPoint: ReactExtensionPoint = new ReactExtensionPoint('hello.world');
 
 test('extension renders', () => {
     const HelloComponent = (props: { name: string }) => <div>Hello {props.name}</div>;
 
     // Register first "Hello world" extension
-    register('hello.world', ({ container }: { container: HTMLDivElement }) => {
+    HelloWorldExtensionPoint.register(({ container }) => {
         ReactDOM.render(<HelloComponent name="world" />, container);
     });
 
     // Mount the Extension renderer (vs shallow) so that we can test rerendering when new plugins are added.
-    const wrapper = mount(<ExtensionPoint extensionPointId="hello.world" />);
+    const wrapper = mount(<HelloWorldExtensionPoint.Component />);
     expect(wrapper).toHaveText('Hello world');
 
-    register('hello.world', ({ container }: { container: HTMLDivElement }) => {
+    HelloWorldExtensionPoint.register(({ container }) => {
         ReactDOM.render(<HelloComponent name="test" />, container);
     });
 
@@ -29,10 +32,11 @@ test('extension renders', () => {
 });
 
 test('default component renders', () => {
+    const TestExtensionPoint = new ReactExtensionPoint('default.test');
     const wrapper = mount(
-        <ExtensionPoint extensionPointId="default.test">
+        <TestExtensionPoint.Component context={{}}>
             <hr className="hr_test" />
-        </ExtensionPoint>
+        </TestExtensionPoint.Component>
     );
     expect(wrapper.find('.hr_test')).toHaveLength(1);
 });

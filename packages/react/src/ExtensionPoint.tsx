@@ -1,18 +1,24 @@
 import * as React from 'react';
-import { get as getExtensions, subscribe, IStoreSubscription } from '@jenkins-cd/es-extensions';
+import { IStoreSubscription, ExtensionPoint } from '@jenkins-cd/es-extensions';
+import { create } from 'domain';
 
-interface Props {
-    extensionPointId: string;
-    context?: any;
+export interface RenderContext {
+    container: HTMLDivElement;
+}
+
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
+interface Props<Context> {
+    context?: Context;
     containerClassName?: string;
     keyPrefix?: string;
 }
 
-interface State {
-    extensions: Function[];
+interface State<T> {
+    extensions: T[];
 }
 
-const ExtensionsContainer: React.SFC<Props> = props => (
+const ExtensionsContainer: React.SFC<Props<any>> = props => (
     <div className={`extension_container ${props.containerClassName || ''}`.trim()}>{props.children}</div>
 );
 
@@ -25,43 +31,59 @@ const Container: React.SFC<{ context?: any; extension: Function }> = props => {
 
     return <div ref={ref} />;
 };
-export class ExtensionPoint extends React.Component<Props, State> {
-    private subscription: IStoreSubscription | undefined;
-    constructor(props: Props) {
-        super(props);
-        this.state = { extensions: getExtensions(this.props.extensionPointId) };
+
+export function createReactExtensionPoint<T>(extensionPointId: string) {
+    return new ReactExtensionPoint<T>(extensionPointId);
+}
+export class ReactExtensionPoint<T = {}> extends ExtensionPoint<(t: RenderContext & T) => void> {
+    constructor(extensionPointId: string) {
+        super(extensionPointId);
+        this.Component = createComponent(this);
     }
 
-    componentDidMount() {
-        this.subscription = subscribe(this.props.extensionPointId, (extensions: Function[]) =>
-            this.setState({ extensions })
-        );
-    }
+    readonly Component: React.ComponentType<Props<T>>;
+}
 
-    componentWillUnmount() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
+function createComponent<T>(
+    extensionPoint: ExtensionPoint<(t: RenderContext & T) => void>
+): React.ComponentType<Props<T>> {
+    return (class extends React.Component<Props<T>, State<(t: RenderContext & T) => void>> {
+        subscription: IStoreSubscription | undefined;
+
+        constructor(props: Props<T>) {
+            super(props);
+            this.state = { extensions: extensionPoint.get() };
         }
-    }
 
-    render() {
-        const exts = this.state.extensions;
-
-        if (!exts || exts.length === 0) {
-            return <ExtensionsContainer {...this.props}>{this.props.children}</ExtensionsContainer>;
+        componentDidMount() {
+            this.subscription = extensionPoint.subscribe(extensions => this.setState({ extensions }));
         }
-        return (
-            <ExtensionsContainer {...this.props}>
-                {exts.map((extension: any, index: number) => {
-                    return (
-                        <Container
-                            key={`${this.props.keyPrefix || 'key-'}${index}`}
-                            extension={extension}
-                            context={this.props.context}
-                        />
-                    );
-                })}
-            </ExtensionsContainer>
-        );
-    }
+
+        componentWillUnmount() {
+            if (this.subscription) {
+                this.subscription.unsubscribe();
+            }
+        }
+
+        render() {
+            const exts = this.state.extensions;
+
+            if (!exts || exts.length === 0) {
+                return <ExtensionsContainer {...this.props}>{this.props.children}</ExtensionsContainer>;
+            }
+            return (
+                <ExtensionsContainer {...this.props}>
+                    {exts.map((extension: any, index: number) => {
+                        return (
+                            <Container
+                                key={`${this.props.keyPrefix || 'key-'}${index}`}
+                                extension={extension}
+                                context={this.props.context}
+                            />
+                        );
+                    })}
+                </ExtensionsContainer>
+            );
+        }
+    } as any) as React.ComponentType<Props<T>>;
 }
