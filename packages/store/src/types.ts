@@ -50,3 +50,6 @@ export class ExtensionPoint<T> implements IExtensionPointId {
 export interface IExtension<T> extends IExtensionPointId {
     extension: T;
 }
+export interface IRenderParameter {
+    container: HTMLDivElement;
+}

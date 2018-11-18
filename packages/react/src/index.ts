@@ -1,1 +1,1 @@
-export { ReactExtensionPoint, RenderContext, createReactExtensionPoint } from './ExtensionPoint';
+export { ReactExtensionPoint } from './ExtensionPoint';
