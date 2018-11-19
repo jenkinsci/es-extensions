@@ -2,65 +2,97 @@
 
 > This repository provides a collection of packages to aid with runtime ES5+ extensibility.
 
+-   [ES Extensions](#es-extensions)
 -   [Usage](#usage)
-    -   [Installation](#installation)
--   [Define](#defin)
-    -   [Project Structre](#project-structre)
-    -   [Building](#building)
+    -   [Install](#install)
+    -   [Header Navbar extension](#header-navbar-extension)
+    -   [Creating an ExtensionPoint](#creating-an-extensionpoint)
+    -   [Implementing an extension](#implementing-an-extension)
+    -   [Using the Extension](#using-the-extension)
+-   [Building](#building)
     -   [Test](#test)
     -   [Meta](#meta)
 
 # Usage
 
-The recommended way to use this library is in conjunction with React. However es-extensions is compatable with any es5+.
+There are 2 parts to providing runtime extenibility with es-extensions. An `ExtensionPoint` is created which defines the contract which plugins can use to implement `Extensions` with.
+
+## Install
 
 ```sh
-npm install -S @jenkins-cd/es-extensions-react15.4
+npm install -S @jenkins-cd/es-extensions
 ```
 
-ES extensions provides a function to define extension points for react.
+## Header Navbar extension
 
-```typescript tsx
-import { createReactExtensionPoint } from '@jenkins-cd/es-extensions-react15.4';
+All following examples are properly type checked when using typescript.
 
-interface Context {
-    enviornment: 'dev' | 'prod';
+## Creating an ExtensionPoint
+
+```ts
+import { createExtensionPoint } from '@jenkins-cd/es-extensions';
+
+interface HeaderNavLink {
+    label: string;
+    uri: string;
+
+    /* use history api or browser for link */
+    linkType: 'html5history' | 'browser';
 }
-export const ExampleExtensionPoint = createReactExtensionPoint<Context>('example');
+export const headerNavLinkExtensionPoint = createExtensionPoint<HeaderLink>('header.link');
 ```
+
+The `ExtensionPoint` can be exported in an NPM package so that implementors can can access to type information
+
+## Implementing an extension
+
+```ts
+import { headerNavLinkExtensionPoint } from 'my-extension-points';
+
+headerNavLinkExtensionPoint.register({
+    label: 'Github',
+    uri: 'https://github.com',
+    linkType: 'browser'
+});
+```
+
+## Using the Extension
 
 ```tsx
-render() {
-    return <ExampleExtensionPoint.Component context={environment: 'dev'}>
-}
+import { headerNavLinkExtensionPoint } from 'my-extension-points';
 
+const navLinkExtensions = headerNavExtensionPoint.get();
+
+navLinkExtensions.map((extension, index) => {
+    if (extension.linkType === 'browser') {
+        return (
+            <a key={index} href={extension.uri}>
+                {label}
+            </a>
+        );
+    } else {
+        return (
+            <Link key={index} to={extension.uri}>
+                {label}
+            </Link>
+        );
+    }
+});
 ```
 
-## Installation
-
-`npm install --save @jenkins-cd/es-extensions`
-
-# Defin
-
-## Project Structre
-
--   `/packages/`
-    -   `store` - Extension store implementation that allows extensions to be registered and looked up.
-    -   `react` - Tools to help with rendering react extensions. Only needed for extenion points.
-
-## Building
+# Building
 
 This repository is managed with [lerna](https://github.com/lerna/lerna). To build:
 
 ```sh
-npm install
-npm run bootstrap
+yarn install
+yarn run bootstrap
 ```
 
 ## Test
 
 ```sh
-npm test
+yarn test
 ```
 
 ## Meta
